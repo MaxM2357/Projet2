@@ -43,11 +43,69 @@ Tour *heuristic1(Tour *tour){
             town = getTownAtPosition(t, tPos);
             if( distanceBetweenTowns(town, tTown) < dist){
                 dist = distanceBetweenTowns(town, tTown);
-                printf("%lf\n", dist);
                 InsertPos = tPos;
             }
         }
-        printf("******\nChoosen: %lf\n******\n", dist);
+        addTownAfterTourPosition(t, InsertPos, tTown);
+        pos = getNextTourPosition(tour, pos);
+    }
+    
+    return t;
+}
+
+
+Tour *heuristic2(Tour *tour){
+    //faire les asserts!
+    int i=0, j=0;
+    int tourSize = getTourSize(tour);
+    double len=0, minLen=0;
+    Tour *t = createEmptyTour();
+    //t est le tour qu'on va retourner a l'utilisateur
+    TourPosition *pos = getTourStartPosition(tour);
+    //copie de la premiere ville
+    Town *town = getTownAtPosition(tour, pos);
+    Town *tStartTown = Towncpy(town);
+    addTownAtTourEnd(t, tStartTown);
+    //copie de la seconde ville
+    pos = getNextTourPosition(t, pos);
+    town = getTownAtPosition(tour, pos);
+    Town *tSecondTown = Towncpy(town);
+    addTownAtTourEnd(t, tSecondTown);
+    //init de quelques variables
+    //description needed
+    TourPosition *tStartPos = getTourStartPosition(t);
+    TourPosition *tSecondPos = getNextTourPosition(t, tStartPos);
+    Town *tTown = NULL;
+    Town *town2 = NULL;
+    TourPosition *tPos = NULL, *tPos2 = NULL;
+    TourPosition *InsertPos = NULL;
+    pos = getNextTourPosition(tour, pos);
+    for(i=2; i<tourSize; i++){
+        town = getTownAtPosition(tour, pos);
+        if(getNextTourPosition(t, tStartPos) == NULL){
+            tSecondTown = tStartTown;
+        }else{
+            tSecondTown = getTownAtPosition(t, getNextTourPosition(t, tStartPos));
+        }
+        tTown = Towncpy(town);
+        minLen = getTourLength(t) + distanceBetweenTowns(tStartTown, tTown) + distanceBetweenTowns(tTown, tSecondTown) - distanceBetweenTowns(tStartTown, tSecondTown);
+        tPos = tStartPos;
+        InsertPos = tStartPos;
+        for(j=0; j<i-1; j++){
+            town = getTownAtPosition(t, tPos);
+            tPos2 = getNextTourPosition(t, tPos);
+            if(tPos2 == NULL){
+                town2 = tStartTown;
+            }else{
+                town2 = getTownAtPosition(t, tPos2);
+            }
+            len = getTourLength(t) + distanceBetweenTowns(town, tTown) + distanceBetweenTowns(tTown, town2) - distanceBetweenTowns(town, town2);
+            if( len < minLen){
+                minLen = len;
+                InsertPos = tPos;
+            }
+            tPos = tPos2;
+        }
         addTownAfterTourPosition(t, InsertPos, tTown);
         pos = getNextTourPosition(tour, pos);
     }
