@@ -10,23 +10,20 @@ int main(){
     const int size = 2000;
     Tour *defaultTour = createTourFromFile("xy-belgium-towns.csv");
     Tour *H1Tour = heuristic1(defaultTour);
-//    Tour *H2Tour = heuristic2(defaulttour);
+    Tour *H2Tour = heuristic2(defaultTour);
     
     ppmTour(defaultTour, "tour-default.ppm", size);
     ppmTour(H1Tour, "tour-heuristic1.ppm", size);
-//    ppmTour(H2Tour, "tour-heuristic2.ppm", size);
+    ppmTour(H2Tour, "tour-heuristic2.ppm", size);
     
     double len = getTourLength(defaultTour);
     int taille = getTourSize(defaultTour);
     printf("Longueur tour par defaut: %lf\n", len);
     printf("Taille tour par defaut: %d\n", taille);
     len = getTourLength(H1Tour);
-    taille = getTourSize(H1Tour);
     printf("Longueur tour avec heuristic 1: %lf\n",len);
-    printf("Taille tour avec heuristic 1: %d\n",taille);
-    //    len = getTourLength(H2Tour);
-    //    printf("Longueur tour avec heuristic 2: %lf\n",len);
-    
+    len = getTourLength(H2Tour);
+    printf("Longueur tour avec heuristic 2: %lf\n",len);
     return 0;
 }
 
