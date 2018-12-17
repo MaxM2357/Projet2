@@ -1,0 +1,67 @@
+NOTE: Attention, ne changez pas le format de ce fichier. Gardez toutes les
+lignes inchangées et ajoutez seulement vos réponses aux endroits prévus à cet
+effet.
+
+Composition du groupe
+---------------------
+-
+Premier membre du groupe:
+Nom: Victor
+Prénom: Dachet
+Matricule: 2017 //rajoute ton matricule
+Second membre du groupe (optionel):
+Nom: Mignolet
+Prénom: Maxime
+Matricule: 20172404
+-
+Analyse de complexité
+---------------------
+
+1. Donnez les complexités en temps des fonctions suivantes en notation 
+grand-O en fonction du nombre de villes n dans le tour. Justifiez très
+brièvement vos réponses.
+-
+addTownAtTourEnd: grand O de n, avec la taille du tour. Nous parcourons la tout le tour pour arriver a la fin
+addTownAfterTourPosition: grand O de 1, le nombre d'operations a faire est constant peu importe la position de la ville dans le tour
+getTourStartPosition: grand 0 de 1, nous ne faisons que renvoyer la valeur d'une variable stockee dans la structure Tour. Le nombre d'operations est donc fixe
+getNextTourPosition: grand 0 de 1, nous ne faisons que renvoyer la valeur d'une variable stockee dans la structure TourPosition. Le nombre d'operations est donc fixe
+getTownAtPosition: grand 0 de 1, nous ne faisons que renvoyer la valeur d'une variable stockee dans la structure TourPosition. Le nombre d'operations est donc fixe
+getTourSize: grand O de 1, nous ne faisons que renvoyer la valeur d'une variable stockee dans la structure Tour. Le nombre d'operations est donc fixe
+getTourLength: grand O de n, nous devons calculer n distances
+- 
+2. Donnez les complexités en temps des deux heuristiques en notation
+grand-O. Justifiez brièvement vos réponses.
+-
+heuristic1: //fais toi plaiz Vic
+heuristic2: //fais toi plaiz Vic
+-
+5. Calculez les temps de calcul des deux heuristiques pour différents
+nombres de villes (des fichiers vous sont fournis) et vérifiez que ces
+temps de calcul correspondent bien aux complexités théoriques:
+-
+n        heuristic1(s)    heuristic2(s)
+----------------------------------------
+2000	 6226		  3753
+4000	 8838		  5258
+8000	 12350		  7442
+16000	 17465		  10321
+
+Commentaires:
+-
+4. Donnez les longueurs de parcours trouvés par les deux heuristiques sur les villes belges:
+-  
+heuristic1: 12 562 km
+heuristic2: 8 593 km
+-
+Autres
+------
+6. Si vous avez travaillé en groupe, comment vous êtes-vous réparti le travail ?
+-
+
+-
+7. Pouvez-vous estimer en heures (et par personne) le temps consacré à ce projet ?
+-Maxime environ 10heures
+
+-
+8. Commentaires ou suggestions ? (optionel)
+-
