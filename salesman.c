@@ -12,10 +12,6 @@ int main(){
     Tour *H1Tour = heuristic1(defaultTour);
     Tour *H2Tour = heuristic2(defaultTour);
     
-    ppmTour(defaultTour, "tour-default.ppm", size);
-    ppmTour(H1Tour, "tour-heuristic1.ppm", size);
-    ppmTour(H2Tour, "tour-heuristic2.ppm", size);
-    
     double len = getTourLength(defaultTour);
     int taille = getTourSize(defaultTour);
     printf("Longueur tour par defaut: %lf\n", len);
@@ -24,6 +20,11 @@ int main(){
     printf("Longueur tour avec heuristic 1: %lf\n",len);
     len = getTourLength(H2Tour);
     printf("Longueur tour avec heuristic 2: %lf\n",len);
+    
+    ppmTour(defaultTour, "tour-default.ppm", size);
+    ppmTour(H1Tour, "tour-heuristic1.ppm", size);
+    ppmTour(H2Tour, "tour-heuristic2.ppm", size);
+
     return 0;
 }
 

@@ -85,10 +85,11 @@ Tour *heuristic2(Tour *tour){
         if(getNextTourPosition(t, tStartPos) == NULL){
             tSecondTown = tStartTown;
         }else{
-            tSecondTown = getTownAtPosition(t, getNextTourPosition(t, tStartPos));
+            tSecondPos = getNextTourPosition(t, tStartPos);
+            tSecondTown = getTownAtPosition(t, tSecondPos);
         }
         tTown = Towncpy(town);
-        minLen = getTourLength(t) + distanceBetweenTowns(tStartTown, tTown) + distanceBetweenTowns(tTown, tSecondTown) - distanceBetweenTowns(tStartTown, tSecondTown);
+        minLen = distanceBetweenTowns(tStartTown, tTown) + distanceBetweenTowns(tTown, tSecondTown) - distanceBetweenTowns(tStartTown, tSecondTown);
         tPos = tStartPos;
         InsertPos = tStartPos;
         for(j=0; j<i-1; j++){
@@ -99,7 +100,7 @@ Tour *heuristic2(Tour *tour){
             }else{
                 town2 = getTownAtPosition(t, tPos2);
             }
-            len = getTourLength(t) + distanceBetweenTowns(town, tTown) + distanceBetweenTowns(tTown, town2) - distanceBetweenTowns(town, town2);
+            len = distanceBetweenTowns(town, tTown) + distanceBetweenTowns(tTown, town2) - distanceBetweenTowns(town, town2);
             if( len < minLen){
                 minLen = len;
                 InsertPos = tPos;
