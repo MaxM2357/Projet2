@@ -20,7 +20,7 @@ Tour *heuristic1(Tour *tour){
     //faire les asserts!
     int i=0, j=0;
     int tourSize = getTourSize(tour);
-    double dist=0;
+    double dist=0, mindist=0;
     Tour *t = createEmptyTour();
     //t est le tour qu'on va retourner a l'utilisateur
     TourPosition *pos = getTourStartPosition(tour);
@@ -35,14 +35,15 @@ Tour *heuristic1(Tour *tour){
     for(i=1; i<tourSize; i++){
         town = getTownAtPosition(tour, pos);
         tTown = Towncpy(town);
-        dist = distanceBetweenTowns(tStartTown, tTown);
+        mindist = distanceBetweenTowns(tStartTown, tTown);
         tPos = tStartPos;
         InsertPos = tStartPos;
         for(j=1; j<i; j++){
             tPos = getNextTourPosition(t, tPos);
             town = getTownAtPosition(t, tPos);
-            if( distanceBetweenTowns(town, tTown) < dist){
-                dist = distanceBetweenTowns(town, tTown);
+            dist = distanceBetweenTowns(town, tTown);
+            if( dist < mindist){
+                mindist = dist;
                 InsertPos = tPos;
             }
         }
