@@ -20,7 +20,7 @@ struct TourPosition_t{
     TourPosition *suivant;
 };
 
-static void addTownAtTourBegin(Tour *tour, Town *town);
+
 static TourPosition *getTourLastPosition(Tour *tour);
 
 Tour *createEmptyTour(){
@@ -36,7 +36,7 @@ Tour *createEmptyTour(){
 }
 
 
-// A terminer
+
 Tour *createTourFromFile(char *filename){
     assert(filename != NULL);
     
@@ -132,22 +132,6 @@ void addTownAfterTourPosition(Tour *tour, TourPosition *pos, Town *town){
     return;
 }
 
-static void addTownAtTourBegin(Tour *tour, Town *town){
-    assert(tour != NULL && town != NULL);
-
-    TourPosition *nouvelle;
-    nouvelle = malloc(sizeof(TourPosition));
-    
-    if (nouvelle == NULL){
-        exit(-1);
-    }
-    
-    nouvelle->town = town;
-    
-    nouvelle->suivant = tour->position;
-    tour->position = nouvelle;
-    
-}
 
 TourPosition *getTourStartPosition(Tour *tour){
     assert(tour != NULL);
