@@ -10,7 +10,7 @@ struct Town_t {
     char *Name;
 };
 
-Town *createTown(char *name, double x, double y){
+Town *createTown(const char *name, double x, double y){
     int size = 0;
     Town *t;
     t= malloc(sizeof(Town));

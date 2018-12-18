@@ -11,7 +11,7 @@
 static Town *Towncpy(Town *src){
     double x = getTownX(src);
     double y = getTownY(src);
-    char *name = (char*)(getTownName(src));
+    const char *name = getTownName(src);
     Town *dest = createTown(name, x, y);
     return dest;
 }
