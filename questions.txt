@@ -8,7 +8,7 @@ Composition du groupe
 Premier membre du groupe:
 Nom: Victor
 Prénom: Dachet
-Matricule: 2017 //rajoute ton matricule
+Matricule: 20171488
 Second membre du groupe (optionel):
 Nom: Mignolet
 Prénom: Maxime
@@ -32,8 +32,8 @@ getTourLength: grand O de n, nous devons calculer n distances
 2. Donnez les complexités en temps des deux heuristiques en notation
 grand-O. Justifiez brièvement vos réponses.
 -
-heuristic1: //fais toi plaiz Vic
-heuristic2: //fais toi plaiz Vic
+heuristic1: O(n^2) car il y a deux boucle à parcourir entièrement dans le pire des cas.
+heuristic2: O(n^2) car de nouveau, il y a deux boucle à parcourir entièrement dans le pire des cas.
 -
 5. Calculez les temps de calcul des deux heuristiques pour différents
 nombres de villes (des fichiers vous sont fournis) et vérifiez que ces
@@ -46,7 +46,7 @@ n        heuristic1(s)    heuristic2(s)
 8000	 0.474		  0.838
 16000	 2.075		  3.432
 
-Commentaires:
+Commentaires: Oui les temps de calcul correspondent à O(n^2) car quand on double n on quadruple le temps de calcul.
 -
 4. Donnez les longueurs de parcours trouvés par les deux heuristiques sur les villes belges:
 -  
@@ -56,12 +56,12 @@ heuristic2: 8 593 km
 Autres
 ------
 6. Si vous avez travaillé en groupe, comment vous êtes-vous réparti le travail ?
--
+- Victor: tour.c et town.c
 
--
+-Maxime: salesman.c tsp.c
 7. Pouvez-vous estimer en heures (et par personne) le temps consacré à ce projet ?
 -Maxime environ 10heures
 
--
+-Environ 10h
 8. Commentaires ou suggestions ? (optionel)
 -
