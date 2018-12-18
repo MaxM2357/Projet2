@@ -9,6 +9,8 @@
 //fonction de debugage
 #define DEBUG(message) fprintf(stderr, "Debug (%s): ligne %d, fonction [%s], fichier [%s]\n", message, __LINE__, __FUNCTION__,__FILE__)
 
+static TourPosition *getTourLastPosition(Tour *tour);
+
 struct Tour_t{
     TourPosition *position;
     unsigned int size;
@@ -19,9 +21,6 @@ struct TourPosition_t{
     Town *town;
     TourPosition *suivant;
 };
-
-static void addTownAtTourBegin(Tour *tour, Town *town);
-static TourPosition *getTourLastPosition(Tour *tour);
 
 Tour *createEmptyTour(){
     Tour *tour;
@@ -36,7 +35,7 @@ Tour *createEmptyTour(){
 }
 
 
-// A terminer
+
 Tour *createTourFromFile(char *filename){
     assert(filename != NULL);
     
@@ -55,10 +54,9 @@ Tour *createTourFromFile(char *filename){
                 strcpy(name,token);
                 token = strtok(NULL,",");
                 x = atof(token);
-                token = strtok(NULL,",");
+                token = strtok(NULL,"\n");
                 y = atof(token);
-                
-                town = createTown(token, x, y);
+                town = createTown(name, x, y);
                 
                 addTownAtTourEnd(tour, town);
                 
@@ -132,22 +130,6 @@ void addTownAfterTourPosition(Tour *tour, TourPosition *pos, Town *town){
     return;
 }
 
-static void addTownAtTourBegin(Tour *tour, Town *town){
-    assert(tour != NULL && town != NULL);
-
-    TourPosition *nouvelle;
-    nouvelle = malloc(sizeof(TourPosition));
-    
-    if (nouvelle == NULL){
-        exit(-1);
-    }
-    
-    nouvelle->town = town;
-    
-    nouvelle->suivant = tour->position;
-    tour->position = nouvelle;
-    
-}
 
 TourPosition *getTourStartPosition(Tour *tour){
     assert(tour != NULL);
@@ -193,7 +175,7 @@ int getTourSize(Tour *tour){
     return sizeTour;
 }
 
-int getTourLength(Tour *tour){
+double getTourLength(Tour *tour){
     assert(tour != NULL);
     double length = 0;
     TourPosition *pos,*suiv;

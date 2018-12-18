@@ -6,9 +6,12 @@
 
 void ppmTour(Tour *tour, const char *ppmName, int size);
 
-int main(){
+int main(int argc, char *argv[]){
+    if(argc != 2)
+        return -1;
+    char *filename = argv[1];
     const int size = 2000;
-    Tour *defaultTour = createTourFromFile("xy-belgium-towns.csv");
+    Tour *defaultTour = createTourFromFile(filename);
     Tour *H1Tour = heuristic1(defaultTour);
     Tour *H2Tour = heuristic2(defaultTour);
     

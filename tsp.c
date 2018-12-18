@@ -11,7 +11,7 @@
 static Town *Towncpy(Town *src){
     double x = getTownX(src);
     double y = getTownY(src);
-    char *name = (char*)(getTownName(src));
+    const char *name = getTownName(src);
     Town *dest = createTown(name, x, y);
     return dest;
 }
@@ -38,7 +38,7 @@ Tour *heuristic1(Tour *tour){
         dist = distanceBetweenTowns(tStartTown, tTown);
         tPos = tStartPos;
         InsertPos = tStartPos;
-        for(j=0; j<i-1; j++){
+        for(j=1; j<i; j++){
             tPos = getNextTourPosition(t, tPos);
             town = getTownAtPosition(t, tPos);
             if( distanceBetweenTowns(town, tTown) < dist){
@@ -82,18 +82,14 @@ Tour *heuristic2(Tour *tour){
     pos = getNextTourPosition(tour, pos);
     for(i=2; i<tourSize; i++){
         town = getTownAtPosition(tour, pos);
-        if(getNextTourPosition(t, tStartPos) == NULL){
-            tSecondTown = tStartTown;
-        }else{
-            tSecondPos = getNextTourPosition(t, tStartPos);
-            tSecondTown = getTownAtPosition(t, tSecondPos);
-        }
+        tSecondPos = getNextTourPosition(t, tStartPos);
+        tSecondTown = getTownAtPosition(t, tSecondPos);
         tTown = Towncpy(town);
         minLen = distanceBetweenTowns(tStartTown, tTown) + distanceBetweenTowns(tTown, tSecondTown) - distanceBetweenTowns(tStartTown, tSecondTown);
         tPos = tStartPos;
         InsertPos = tStartPos;
-        for(j=0; j<i-1; j++){
-            town = getTownAtPosition(t, tPos);
+        town = getTownAtPosition(t, tPos);
+        for(j=0; j<i; j++){
             tPos2 = getNextTourPosition(t, tPos);
             if(tPos2 == NULL){
                 town2 = tStartTown;
@@ -106,6 +102,7 @@ Tour *heuristic2(Tour *tour){
                 InsertPos = tPos;
             }
             tPos = tPos2;
+            town = town2;
         }
         addTownAfterTourPosition(t, InsertPos, tTown);
         pos = getNextTourPosition(tour, pos);

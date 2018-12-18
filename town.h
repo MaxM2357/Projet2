@@ -6,7 +6,7 @@
 typedef struct Town_t Town;
 
 //cree une ville de nom "name", et de coordonnées (x,y)
-Town *createTown(char *name, double x, double y);
+Town *createTown(const char *name, double x, double y);
 
 //renvoie la coordonnée x de la ville
 double getTownX(Town *town);
